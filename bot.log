@@ -1,0 +1,358 @@
+[2023-01-22 15:52:24,111][INFO] => Scheduler started
+[2023-01-22 16:04:19,168][INFO] => Received signal 2 (SIGINT), stopping...
+[2023-01-22 16:04:19,168][INFO] => Scheduler has been shut down
+[2023-01-22 16:04:19,283][WARNING] => Exiting immediately!
+[2023-01-22 16:04:28,293][INFO] => Scheduler started
+[2023-01-22 16:05:00,567][ERROR] => No error handlers are registered, logging exception.
+Traceback (most recent call last):
+  File "C:\Py_prj\Shopping_bot_final\env\lib\site-packages\urllib3\connectionpool.py", line 703, in urlopen
+    httplib_response = self._make_request(
+  File "C:\Py_prj\Shopping_bot_final\env\lib\site-packages\urllib3\connectionpool.py", line 449, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "C:\Py_prj\Shopping_bot_final\env\lib\site-packages\urllib3\connectionpool.py", line 444, in _make_request
+    httplib_response = conn.getresponse()
+  File "C:\Users\agest\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\agest\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\agest\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Py_prj\Shopping_bot_final\env\lib\site-packages\requests\adapters.py", line 489, in send
+    resp = conn.urlopen(
+  File "C:\Py_prj\Shopping_bot_final\env\lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    retries = retries.increment(
+  File "C:\Py_prj\Shopping_bot_final\env\lib\site-packages\urllib3\util\retry.py", line 550, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "C:\Py_prj\Shopping_bot_final\env\lib\site-packages\urllib3\packages\six.py", line 769, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Py_prj\Shopping_bot_final\env\lib\site-packages\urllib3\connectionpool.py", line 703, in urlopen
+    httplib_response = self._make_request(
+  File "C:\Py_prj\Shopping_bot_final\env\lib\site-packages\urllib3\connectionpool.py", line 449, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "C:\Py_prj\Shopping_bot_final\env\lib\site-packages\urllib3\connectionpool.py", line 444, in _make_request
+    httplib_response = conn.getresponse()
+  File "C:\Users\agest\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 1374, in getresponse
+    response.begin()
+  File "C:\Users\agest\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 318, in begin
+    version, status, reason = self._read_status()
+  File "C:\Users\agest\AppData\Local\Programs\Python\Python310\lib\http\client.py", line 287, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Py_prj\Shopping_bot_final\env\lib\site-packages\telegram\ext\dispatcher.py", line 557, in process_update
+    handler.handle_update(update, self, check, context)
+  File "C:\Py_prj\Shopping_bot_final\env\lib\site-packages\telegram\ext\conversationhandler.py", line 627, in handle_update
+    new_state = handler.handle_update(update, dispatcher, check_result, context)
+  File "C:\Py_prj\Shopping_bot_final\env\lib\site-packages\telegram\ext\handler.py", line 199, in handle_update
+    return self.callback(update, context)
+  File "C:\Py_prj\Shopping_bot_final\tg_bot\handlers.py", line 125, in operation_phone_number
+    phone.sends_sms_to_the_user()
+  File "C:\Py_prj\Shopping_bot_final\processing_qr_code\API_FNS\nalog_ru.py", line 23, in sends_sms_to_the_user
+    response = requests.post(url, json=payload, headers=HEADERS)
+  File "C:\Py_prj\Shopping_bot_final\env\lib\site-packages\requests\api.py", line 115, in post
+    return request("post", url, data=data, json=json, **kwargs)
+  File "C:\Py_prj\Shopping_bot_final\env\lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Py_prj\Shopping_bot_final\env\lib\site-packages\requests\sessions.py", line 587, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Py_prj\Shopping_bot_final\env\lib\site-packages\requests\sessions.py", line 701, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Py_prj\Shopping_bot_final\env\lib\site-packages\requests\adapters.py", line 547, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+[2023-01-22 16:06:50,607][INFO] => Received signal 2 (SIGINT), stopping...
+[2023-01-22 16:06:50,607][INFO] => Scheduler has been shut down
+[2023-01-22 16:06:51,019][WARNING] => Exiting immediately!
+[2023-01-22 16:06:57,695][INFO] => Scheduler started
+[2023-01-22 16:08:45,577][INFO] => Received signal 2 (SIGINT), stopping...
+[2023-01-22 16:08:45,577][INFO] => Scheduler has been shut down
+[2023-01-22 16:08:45,715][WARNING] => Exiting immediately!
+[2023-01-22 16:11:56,248][INFO] => Scheduler started
+[2023-01-22 16:42:33,028][INFO] => Received signal 2 (SIGINT), stopping...
+[2023-01-22 16:42:33,030][INFO] => Scheduler has been shut down
+[2023-01-22 16:42:33,153][WARNING] => Exiting immediately!
+[2023-01-22 16:42:45,769][INFO] => Scheduler started
+[2023-01-22 16:43:47,795][INFO] => Received signal 2 (SIGINT), stopping...
+[2023-01-22 16:43:47,795][INFO] => Scheduler has been shut down
+[2023-01-22 16:43:55,639][WARNING] => Exiting immediately!
+[2023-01-22 16:44:53,289][INFO] => [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2023-01-22 16:44:53,289][INFO] => [33mPress CTRL+C to quit[0m
+[2023-01-22 16:44:53,292][INFO] =>  * Restarting with stat
+[2023-01-22 16:44:55,743][WARNING] =>  * Debugger is active!
+[2023-01-22 16:44:55,758][INFO] =>  * Debugger PIN: 993-203-713
+[2023-01-22 16:45:07,832][INFO] => 127.0.0.1 - - [22/Jan/2023 16:45:07] "GET / HTTP/1.1" 200 -
+[2023-01-22 16:45:08,284][INFO] => 127.0.0.1 - - [22/Jan/2023 16:45:08] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+[2023-01-22 16:45:36,947][INFO] => 127.0.0.1 - - [22/Jan/2023 16:45:36] "[32mPOST /process-registration HTTP/1.1[0m" 302 -
+[2023-01-22 16:45:38,360][INFO] => 127.0.0.1 - - [22/Jan/2023 16:45:38] "GET /category HTTP/1.1" 200 -
+[2023-01-22 16:46:44,427][INFO] => 127.0.0.1 - - [22/Jan/2023 16:46:44] "[35m[1mPOST /category HTTP/1.1[0m" 500 -
+[2023-01-22 16:46:44,627][INFO] => 127.0.0.1 - - [22/Jan/2023 16:46:44] "GET /category?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+[2023-01-22 16:46:44,628][INFO] => 127.0.0.1 - - [22/Jan/2023 16:46:44] "GET /category?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+[2023-01-22 16:46:44,748][INFO] => 127.0.0.1 - - [22/Jan/2023 16:46:44] "GET /category?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+[2023-01-22 16:46:44,864][INFO] => 127.0.0.1 - - [22/Jan/2023 16:46:44] "[36mGET /category?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+[2023-01-22 16:48:32,662][INFO] =>  * Detected change in 'C:\\Py_prj\\Shopping_bot_final\\settings_box\\settings.py', reloading
+[2023-01-22 16:48:33,191][INFO] =>  * Restarting with stat
+[2023-01-22 16:48:38,377][WARNING] =>  * Debugger is active!
+[2023-01-22 16:48:38,385][INFO] =>  * Debugger PIN: 993-203-713
+[2023-01-22 16:48:47,662][INFO] =>  * Detected change in 'C:\\Py_prj\\Shopping_bot_final\\webapp\\webapp\\__init__.py', reloading
+[2023-01-22 16:48:48,014][INFO] =>  * Restarting with stat
+[2023-01-22 16:49:05,725][INFO] => Scheduler started
+[2023-01-22 16:50:02,803][INFO] => Received signal 2 (SIGINT), stopping...
+[2023-01-22 16:50:02,803][INFO] => Scheduler has been shut down
+[2023-01-22 16:50:02,912][WARNING] => Exiting immediately!
+[2023-01-22 16:50:08,168][INFO] => Scheduler started
+[2023-01-22 16:52:24,368][INFO] => Received signal 2 (SIGINT), stopping...
+[2023-01-22 16:52:24,368][INFO] => Scheduler has been shut down
+[2023-01-22 16:52:24,488][WARNING] => Exiting immediately!
+[2023-01-22 16:52:38,703][INFO] => Scheduler started
+[2023-01-22 16:53:39,446][INFO] => Received signal 2 (SIGINT), stopping...
+[2023-01-22 16:53:39,446][INFO] => Scheduler has been shut down
+[2023-01-22 16:53:39,566][WARNING] => Exiting immediately!
+[2023-01-22 16:53:52,924][INFO] => Scheduler started
+[2023-01-22 16:58:09,101][INFO] => Received signal 2 (SIGINT), stopping...
+[2023-01-22 16:58:09,101][INFO] => Scheduler has been shut down
+[2023-01-22 16:58:09,189][WARNING] => Exiting immediately!
+[2023-01-22 16:58:14,121][INFO] => Scheduler started
+[2023-01-22 16:58:47,922][INFO] => Received signal 2 (SIGINT), stopping...
+[2023-01-22 16:58:47,922][INFO] => Scheduler has been shut down
+[2023-01-22 16:58:48,035][WARNING] => Exiting immediately!
+[2023-01-22 17:04:27,476][INFO] => [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2023-01-22 17:04:27,476][INFO] => [33mPress CTRL+C to quit[0m
+[2023-01-22 17:04:27,477][INFO] =>  * Restarting with stat
+[2023-01-22 17:04:29,882][WARNING] =>  * Debugger is active!
+[2023-01-22 17:04:29,885][INFO] =>  * Debugger PIN: 993-203-713
+[2023-01-22 17:05:22,842][INFO] => [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2023-01-22 17:05:22,842][INFO] => [33mPress CTRL+C to quit[0m
+[2023-01-22 17:05:22,844][INFO] =>  * Restarting with stat
+[2023-01-22 17:05:26,463][WARNING] =>  * Debugger is active!
+[2023-01-22 17:05:26,467][INFO] =>  * Debugger PIN: 993-203-713
+[2023-01-22 17:05:26,635][INFO] => 127.0.0.1 - - [22/Jan/2023 17:05:26] "GET / HTTP/1.1" 200 -
+[2023-01-22 17:05:27,152][INFO] => 127.0.0.1 - - [22/Jan/2023 17:05:27] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+[2023-01-22 17:05:36,406][INFO] => 127.0.0.1 - - [22/Jan/2023 17:05:36] "GET / HTTP/1.1" 200 -
+[2023-01-22 17:07:07,534][INFO] =>  * Detected change in 'C:\\Py_prj\\Shopping_bot_final\\main.py', reloading
+[2023-01-22 17:07:07,873][INFO] =>  * Restarting with stat
+[2023-01-22 17:07:20,259][INFO] => [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2023-01-22 17:07:20,259][INFO] => [33mPress CTRL+C to quit[0m
+[2023-01-22 17:07:20,261][INFO] =>  * Restarting with stat
+[2023-01-22 17:09:23,964][INFO] => [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2023-01-22 17:09:23,965][INFO] => [33mPress CTRL+C to quit[0m
+[2023-01-22 17:09:23,966][INFO] =>  * Restarting with stat
+[2023-01-22 17:09:28,490][WARNING] =>  * Debugger is active!
+[2023-01-22 17:09:28,496][INFO] =>  * Debugger PIN: 993-203-713
+[2023-01-22 17:09:53,701][INFO] => Scheduler started
+[2023-01-22 17:10:12,005][INFO] => 127.0.0.1 - - [22/Jan/2023 17:10:12] "GET / HTTP/1.1" 200 -
+[2023-01-22 17:10:25,044][INFO] => 127.0.0.1 - - [22/Jan/2023 17:10:25] "[32mPOST /process-registration HTTP/1.1[0m" 302 -
+[2023-01-22 17:10:27,498][INFO] => 127.0.0.1 - - [22/Jan/2023 17:10:27] "GET /category HTTP/1.1" 200 -
+[2023-01-22 17:10:42,367][INFO] => 127.0.0.1 - - [22/Jan/2023 17:10:42] "[35m[1mPOST /category HTTP/1.1[0m" 500 -
+[2023-01-22 17:10:42,591][INFO] => 127.0.0.1 - - [22/Jan/2023 17:10:42] "[36mGET /category?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+[2023-01-22 17:10:42,593][INFO] => 127.0.0.1 - - [22/Jan/2023 17:10:42] "[36mGET /category?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+[2023-01-22 17:10:42,837][INFO] => 127.0.0.1 - - [22/Jan/2023 17:10:42] "[36mGET /category?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+[2023-01-22 17:10:42,967][INFO] => 127.0.0.1 - - [22/Jan/2023 17:10:42] "[36mGET /category?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+[2023-01-22 17:11:17,564][INFO] => 127.0.0.1 - - [22/Jan/2023 17:11:17] "[35m[1mPOST /category HTTP/1.1[0m" 500 -
+[2023-01-22 17:11:17,677][INFO] => 127.0.0.1 - - [22/Jan/2023 17:11:17] "[36mGET /category?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+[2023-01-22 17:11:17,678][INFO] => 127.0.0.1 - - [22/Jan/2023 17:11:17] "[36mGET /category?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+[2023-01-22 17:11:17,868][INFO] => 127.0.0.1 - - [22/Jan/2023 17:11:17] "[36mGET /category?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+[2023-01-22 17:11:17,979][INFO] => 127.0.0.1 - - [22/Jan/2023 17:11:17] "[36mGET /category?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+[2023-01-22 17:13:43,581][INFO] => Received signal 2 (SIGINT), stopping...
+[2023-01-22 17:13:43,581][INFO] => Scheduler has been shut down
+[2023-01-22 17:13:43,669][WARNING] => Exiting immediately!
+[2023-01-22 17:13:49,205][INFO] => [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2023-01-22 17:13:49,205][INFO] => [33mPress CTRL+C to quit[0m
+[2023-01-22 17:13:49,207][INFO] =>  * Restarting with stat
+[2023-01-22 17:13:51,666][WARNING] =>  * Debugger is active!
+[2023-01-22 17:13:51,670][INFO] =>  * Debugger PIN: 993-203-713
+[2023-01-22 17:13:53,341][INFO] => Scheduler started
+[2023-01-22 17:14:06,344][INFO] => 127.0.0.1 - - [22/Jan/2023 17:14:06] "GET / HTTP/1.1" 200 -
+[2023-01-22 17:14:07,195][INFO] => 127.0.0.1 - - [22/Jan/2023 17:14:07] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+[2023-01-22 17:16:37,096][INFO] => 127.0.0.1 - - [22/Jan/2023 17:16:37] "GET / HTTP/1.1" 200 -
+[2023-01-22 17:16:38,027][INFO] => 127.0.0.1 - - [22/Jan/2023 17:16:38] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+[2023-01-22 17:17:09,977][INFO] => 127.0.0.1 - - [22/Jan/2023 17:17:09] "[32mPOST /process-registration HTTP/1.1[0m" 302 -
+[2023-01-22 17:17:10,629][INFO] => 127.0.0.1 - - [22/Jan/2023 17:17:10] "[35m[1mGET /category HTTP/1.1[0m" 500 -
+[2023-01-22 17:17:10,813][INFO] => 127.0.0.1 - - [22/Jan/2023 17:17:10] "[36mGET /category?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+[2023-01-22 17:17:10,828][INFO] => 127.0.0.1 - - [22/Jan/2023 17:17:10] "[36mGET /category?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+[2023-01-22 17:17:10,965][INFO] => 127.0.0.1 - - [22/Jan/2023 17:17:10] "[36mGET /category?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+[2023-01-22 17:23:49,765][INFO] =>  * Detected change in 'C:\\Py_prj\\Shopping_bot_final\\database\\models.py', reloading
+[2023-01-22 17:23:50,169][INFO] =>  * Restarting with stat
+[2023-01-22 17:23:56,748][WARNING] =>  * Debugger is active!
+[2023-01-22 17:23:56,752][INFO] =>  * Debugger PIN: 993-203-713
+[2023-01-22 17:24:38,671][INFO] =>  * Detected change in 'C:\\Py_prj\\Shopping_bot_final\\database\\models.py', reloading
+[2023-01-22 17:24:38,845][INFO] =>  * Restarting with stat
+[2023-01-22 17:24:41,879][WARNING] =>  * Debugger is active!
+[2023-01-22 17:24:41,887][INFO] =>  * Debugger PIN: 993-203-713
+[2023-01-22 17:25:01,551][INFO] =>  * Detected change in 'C:\\Py_prj\\Shopping_bot_final\\database\\models.py', reloading
+[2023-01-22 17:25:01,857][INFO] =>  * Restarting with stat
+[2023-01-22 17:25:04,989][WARNING] =>  * Debugger is active!
+[2023-01-22 17:25:04,991][INFO] =>  * Debugger PIN: 993-203-713
+[2023-01-22 17:25:22,827][INFO] =>  * Detected change in 'C:\\Py_prj\\Shopping_bot_final\\database\\models.py', reloading
+[2023-01-22 17:25:23,141][INFO] =>  * Restarting with stat
+[2023-01-22 17:25:26,885][WARNING] =>  * Debugger is active!
+[2023-01-22 17:25:26,888][INFO] =>  * Debugger PIN: 993-203-713
+[2023-01-22 17:25:34,222][INFO] =>  * Detected change in 'C:\\Py_prj\\Shopping_bot_final\\main.py', reloading
+[2023-01-22 17:25:34,653][INFO] =>  * Restarting with stat
+[2023-01-22 17:26:52,260][INFO] => Received signal 2 (SIGINT), stopping...
+[2023-01-22 17:26:52,260][INFO] => Scheduler has been shut down
+[2023-01-22 17:27:06,670][INFO] => [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2023-01-22 17:27:06,670][INFO] => [33mPress CTRL+C to quit[0m
+[2023-01-22 17:27:06,671][INFO] =>  * Restarting with stat
+[2023-01-22 17:27:10,352][INFO] => Scheduler started
+[2023-01-22 17:27:26,155][INFO] => Received signal 2 (SIGINT), stopping...
+[2023-01-22 17:27:26,155][INFO] => Scheduler has been shut down
+[2023-01-22 17:27:26,262][WARNING] => Exiting immediately!
+[2023-01-22 17:27:57,042][INFO] => [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2023-01-22 17:27:57,042][INFO] => [33mPress CTRL+C to quit[0m
+[2023-01-22 17:27:57,045][INFO] =>  * Restarting with stat
+[2023-01-22 17:27:59,753][WARNING] =>  * Debugger is active!
+[2023-01-22 17:27:59,761][INFO] =>  * Debugger PIN: 993-203-713
+[2023-01-22 17:28:05,131][INFO] => Scheduler started
+[2023-01-22 17:29:29,154][INFO] => 127.0.0.1 - - [22/Jan/2023 17:29:29] "GET / HTTP/1.1" 200 -
+[2023-01-22 17:29:29,655][INFO] => 127.0.0.1 - - [22/Jan/2023 17:29:29] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+[2023-01-22 17:29:49,451][INFO] => 127.0.0.1 - - [22/Jan/2023 17:29:49] "[32mPOST /process-registration HTTP/1.1[0m" 302 -
+[2023-01-22 17:29:51,048][INFO] => 127.0.0.1 - - [22/Jan/2023 17:29:51] "[35m[1mGET /category HTTP/1.1[0m" 500 -
+[2023-01-22 17:29:51,209][INFO] => 127.0.0.1 - - [22/Jan/2023 17:29:51] "[36mGET /category?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+[2023-01-22 17:29:51,219][INFO] => 127.0.0.1 - - [22/Jan/2023 17:29:51] "[36mGET /category?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+[2023-01-22 17:29:51,376][INFO] => 127.0.0.1 - - [22/Jan/2023 17:29:51] "[36mGET /category?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+[2023-01-22 17:32:52,022][INFO] => Received signal 2 (SIGINT), stopping...
+[2023-01-22 17:32:52,022][INFO] => Scheduler has been shut down
+[2023-01-22 17:32:57,852][WARNING] => Exiting immediately!
+[2023-01-22 17:33:03,371][INFO] => 127.0.0.1 - - [22/Jan/2023 17:33:03] "GET /category HTTP/1.1" 200 -
+[2023-01-22 17:33:16,302][INFO] => 127.0.0.1 - - [22/Jan/2023 17:33:16] "[35m[1mPOST /category HTTP/1.1[0m" 500 -
+[2023-01-22 17:33:16,370][INFO] => 127.0.0.1 - - [22/Jan/2023 17:33:16] "[36mGET /category?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+[2023-01-22 17:33:16,372][INFO] => 127.0.0.1 - - [22/Jan/2023 17:33:16] "[36mGET /category?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+[2023-01-22 17:33:16,517][INFO] => 127.0.0.1 - - [22/Jan/2023 17:33:16] "[36mGET /category?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+[2023-01-22 17:33:16,610][INFO] => 127.0.0.1 - - [22/Jan/2023 17:33:16] "[36mGET /category?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+[2023-01-22 17:39:37,798][INFO] =>  * Detected change in 'C:\\Py_prj\\Shopping_bot_final\\webapp\\webapp\\db_functions.py', reloading
+[2023-01-22 17:39:38,607][INFO] =>  * Restarting with stat
+[2023-01-22 17:39:43,878][WARNING] =>  * Debugger is active!
+[2023-01-22 17:39:43,882][INFO] =>  * Debugger PIN: 993-203-713
+[2023-01-22 17:39:50,561][INFO] => [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2023-01-22 17:39:50,561][INFO] => [33mPress CTRL+C to quit[0m
+[2023-01-22 17:39:50,563][INFO] =>  * Restarting with stat
+[2023-01-22 17:39:53,231][WARNING] =>  * Debugger is active!
+[2023-01-22 17:39:53,234][INFO] =>  * Debugger PIN: 993-203-713
+[2023-01-22 17:40:02,565][INFO] => 127.0.0.1 - - [22/Jan/2023 17:40:02] "GET / HTTP/1.1" 200 -
+[2023-01-22 17:40:17,351][INFO] => 127.0.0.1 - - [22/Jan/2023 17:40:17] "[32mPOST /process-registration HTTP/1.1[0m" 302 -
+[2023-01-22 17:40:19,943][INFO] => 127.0.0.1 - - [22/Jan/2023 17:40:19] "GET /category HTTP/1.1" 200 -
+[2023-01-22 17:40:40,389][INFO] => 127.0.0.1 - - [22/Jan/2023 17:40:40] "[35m[1mPOST /category HTTP/1.1[0m" 500 -
+[2023-01-22 17:40:40,625][INFO] => 127.0.0.1 - - [22/Jan/2023 17:40:40] "[36mGET /category?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+[2023-01-22 17:40:40,629][INFO] => 127.0.0.1 - - [22/Jan/2023 17:40:40] "[36mGET /category?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+[2023-01-22 17:40:40,762][INFO] => 127.0.0.1 - - [22/Jan/2023 17:40:40] "[36mGET /category?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+[2023-01-22 17:40:40,855][INFO] => 127.0.0.1 - - [22/Jan/2023 17:40:40] "[36mGET /category?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+[2023-01-22 17:43:05,891][INFO] => [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2023-01-22 17:43:05,892][INFO] => [33mPress CTRL+C to quit[0m
+[2023-01-22 17:43:05,894][INFO] =>  * Restarting with stat
+[2023-01-22 17:43:53,265][INFO] => [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2023-01-22 17:43:53,265][INFO] => [33mPress CTRL+C to quit[0m
+[2023-01-22 17:43:53,267][INFO] =>  * Restarting with stat
+[2023-01-22 17:43:55,710][WARNING] =>  * Debugger is active!
+[2023-01-22 17:43:55,712][INFO] =>  * Debugger PIN: 993-203-713
+[2023-01-22 17:44:13,845][INFO] => 127.0.0.1 - - [22/Jan/2023 17:44:13] "GET / HTTP/1.1" 200 -
+[2023-01-22 17:44:23,335][INFO] => 127.0.0.1 - - [22/Jan/2023 17:44:23] "[32mPOST /process-registration HTTP/1.1[0m" 302 -
+[2023-01-22 17:44:24,747][INFO] => 127.0.0.1 - - [22/Jan/2023 17:44:24] "GET /category HTTP/1.1" 200 -
+[2023-01-22 17:45:03,276][INFO] => 127.0.0.1 - - [22/Jan/2023 17:45:03] "GET / HTTP/1.1" 200 -
+[2023-01-22 17:48:15,687][INFO] =>  * Detected change in 'C:\\Py_prj\\Shopping_bot_final\\webapp\\webapp\\db_functions.py', reloading
+[2023-01-22 17:48:15,981][INFO] =>  * Restarting with stat
+[2023-01-22 17:48:28,497][INFO] => [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2023-01-22 17:48:28,497][INFO] => [33mPress CTRL+C to quit[0m
+[2023-01-22 17:48:28,502][INFO] =>  * Restarting with stat
+[2023-01-22 17:48:32,741][WARNING] =>  * Debugger is active!
+[2023-01-22 17:48:32,745][INFO] =>  * Debugger PIN: 993-203-713
+[2023-01-22 17:48:33,162][INFO] => 127.0.0.1 - - [22/Jan/2023 17:48:33] "GET / HTTP/1.1" 200 -
+[2023-01-22 17:48:43,602][INFO] => 127.0.0.1 - - [22/Jan/2023 17:48:43] "[32mPOST /process-registration HTTP/1.1[0m" 302 -
+[2023-01-22 17:48:44,991][INFO] => 127.0.0.1 - - [22/Jan/2023 17:48:44] "GET /category HTTP/1.1" 200 -
+[2023-01-22 17:54:02,834][INFO] => [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2023-01-22 17:54:02,834][INFO] => [33mPress CTRL+C to quit[0m
+[2023-01-22 17:54:02,836][INFO] =>  * Restarting with stat
+[2023-01-22 17:54:05,503][WARNING] =>  * Debugger is active!
+[2023-01-22 17:54:05,513][INFO] =>  * Debugger PIN: 993-203-713
+[2023-01-22 17:54:09,383][INFO] => 127.0.0.1 - - [22/Jan/2023 17:54:09] "GET / HTTP/1.1" 200 -
+[2023-01-22 17:54:17,808][INFO] => 127.0.0.1 - - [22/Jan/2023 17:54:17] "[32mPOST /process-registration HTTP/1.1[0m" 302 -
+[2023-01-22 17:54:19,222][INFO] => 127.0.0.1 - - [22/Jan/2023 17:54:19] "GET /category HTTP/1.1" 200 -
+[2023-01-22 17:55:59,205][INFO] =>  * Detected change in 'C:\\Py_prj\\Shopping_bot_final\\webapp\\webapp\\db_functions.py', reloading
+[2023-01-22 17:55:59,696][INFO] =>  * Restarting with stat
+[2023-01-22 17:56:10,203][INFO] => [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2023-01-22 17:56:10,203][INFO] => [33mPress CTRL+C to quit[0m
+[2023-01-22 17:56:10,204][INFO] =>  * Restarting with stat
+[2023-01-22 17:56:13,131][WARNING] =>  * Debugger is active!
+[2023-01-22 17:56:13,137][INFO] =>  * Debugger PIN: 993-203-713
+[2023-01-22 17:56:17,352][INFO] => 127.0.0.1 - - [22/Jan/2023 17:56:17] "GET / HTTP/1.1" 200 -
+[2023-01-22 17:56:26,032][INFO] => 127.0.0.1 - - [22/Jan/2023 17:56:26] "[32mPOST /process-registration HTTP/1.1[0m" 302 -
+[2023-01-22 17:56:27,408][INFO] => 127.0.0.1 - - [22/Jan/2023 17:56:27] "GET /category HTTP/1.1" 200 -
+[2023-01-22 17:57:49,745][INFO] =>  * Detected change in 'C:\\Py_prj\\Shopping_bot_final\\webapp\\webapp\\db_functions.py', reloading
+[2023-01-22 17:57:50,246][INFO] =>  * Restarting with stat
+[2023-01-22 17:57:54,314][WARNING] =>  * Debugger is active!
+[2023-01-22 17:57:54,317][INFO] =>  * Debugger PIN: 993-203-713
+[2023-01-22 17:58:18,764][INFO] => 127.0.0.1 - - [22/Jan/2023 17:58:18] "POST /category HTTP/1.1" 200 -
+[2023-01-22 18:00:32,330][INFO] =>  * Detected change in 'C:\\Py_prj\\Shopping_bot_final\\webapp\\webapp\\db_functions.py', reloading
+[2023-01-22 18:00:32,730][INFO] =>  * Restarting with stat
+[2023-01-22 18:00:37,131][WARNING] =>  * Debugger is active!
+[2023-01-22 18:00:37,134][INFO] =>  * Debugger PIN: 993-203-713
+[2023-01-22 18:00:46,780][INFO] => 127.0.0.1 - - [22/Jan/2023 18:00:46] "[35m[1mPOST /category HTTP/1.1[0m" 500 -
+[2023-01-22 18:00:46,980][INFO] => 127.0.0.1 - - [22/Jan/2023 18:00:46] "[36mGET /category?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+[2023-01-22 18:00:46,982][INFO] => 127.0.0.1 - - [22/Jan/2023 18:00:46] "[36mGET /category?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+[2023-01-22 18:00:47,034][INFO] => 127.0.0.1 - - [22/Jan/2023 18:00:47] "[36mGET /category?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+[2023-01-22 18:00:47,065][INFO] => 127.0.0.1 - - [22/Jan/2023 18:00:47] "[36mGET /category?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+[2023-01-22 18:05:34,524][INFO] => [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2023-01-22 18:05:34,524][INFO] => [33mPress CTRL+C to quit[0m
+[2023-01-22 18:05:34,529][INFO] =>  * Restarting with stat
+[2023-01-22 18:05:37,023][WARNING] =>  * Debugger is active!
+[2023-01-22 18:05:37,029][INFO] =>  * Debugger PIN: 993-203-713
+[2023-01-22 18:05:42,714][INFO] => Scheduler started
+[2023-01-22 18:10:00,211][INFO] => 127.0.0.1 - - [22/Jan/2023 18:10:00] "GET / HTTP/1.1" 200 -
+[2023-01-22 18:10:19,183][INFO] => 127.0.0.1 - - [22/Jan/2023 18:10:19] "[32mPOST /process-registration HTTP/1.1[0m" 302 -
+[2023-01-22 18:10:19,750][INFO] => 127.0.0.1 - - [22/Jan/2023 18:10:19] "[35m[1mGET /category HTTP/1.1[0m" 500 -
+[2023-01-22 18:10:19,937][INFO] => 127.0.0.1 - - [22/Jan/2023 18:10:19] "[36mGET /category?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+[2023-01-22 18:10:19,941][INFO] => 127.0.0.1 - - [22/Jan/2023 18:10:19] "[36mGET /category?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+[2023-01-22 18:10:20,040][INFO] => 127.0.0.1 - - [22/Jan/2023 18:10:20] "[36mGET /category?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+[2023-01-22 18:15:39,168][INFO] => Received signal 2 (SIGINT), stopping...
+[2023-01-22 18:15:39,169][INFO] => Scheduler has been shut down
+[2023-01-22 18:16:00,736][INFO] => [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[2023-01-22 18:16:00,736][INFO] => [33mPress CTRL+C to quit[0m
+[2023-01-22 18:16:00,741][INFO] =>  * Restarting with stat
+[2023-01-22 18:16:03,326][WARNING] =>  * Debugger is active!
+[2023-01-22 18:16:03,329][INFO] =>  * Debugger PIN: 993-203-713
+[2023-01-22 18:16:07,153][INFO] => Scheduler started
+[2023-01-22 18:16:23,877][INFO] => 127.0.0.1 - - [22/Jan/2023 18:16:23] "GET / HTTP/1.1" 200 -
+[2023-01-22 18:16:38,904][INFO] => 127.0.0.1 - - [22/Jan/2023 18:16:38] "[32mPOST /process-registration HTTP/1.1[0m" 302 -
+[2023-01-22 18:16:40,588][INFO] => 127.0.0.1 - - [22/Jan/2023 18:16:40] "[35m[1mGET /category HTTP/1.1[0m" 500 -
+[2023-01-22 18:16:40,865][INFO] => 127.0.0.1 - - [22/Jan/2023 18:16:40] "[36mGET /category?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+[2023-01-22 18:16:40,870][INFO] => 127.0.0.1 - - [22/Jan/2023 18:16:40] "[36mGET /category?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+[2023-01-22 18:16:41,007][INFO] => 127.0.0.1 - - [22/Jan/2023 18:16:41] "[36mGET /category?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+[2023-01-22 18:17:00,080][INFO] => Received signal 2 (SIGINT), stopping...
+[2023-01-22 18:17:00,080][INFO] => Scheduler has been shut down
+[2023-01-22 18:17:14,439][INFO] => 127.0.0.1 - - [22/Jan/2023 18:17:14] "GET / HTTP/1.1" 200 -
+[2023-01-22 18:17:56,707][INFO] => 127.0.0.1 - - [22/Jan/2023 18:17:56] "[32mPOST /process-registration HTTP/1.1[0m" 302 -
+[2023-01-22 18:17:58,108][INFO] => 127.0.0.1 - - [22/Jan/2023 18:17:58] "GET /category HTTP/1.1" 200 -
+[2023-01-22 18:19:54,166][INFO] => 127.0.0.1 - - [22/Jan/2023 18:19:54] "[35m[1mPOST /category HTTP/1.1[0m" 500 -
+[2023-01-22 18:19:54,244][INFO] => 127.0.0.1 - - [22/Jan/2023 18:19:54] "[36mGET /category?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+[2023-01-22 18:19:54,246][INFO] => 127.0.0.1 - - [22/Jan/2023 18:19:54] "[36mGET /category?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+[2023-01-22 18:19:54,376][INFO] => 127.0.0.1 - - [22/Jan/2023 18:19:54] "[36mGET /category?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+[2023-01-22 18:19:54,445][INFO] => 127.0.0.1 - - [22/Jan/2023 18:19:54] "[36mGET /category?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 304 -
+[2023-01-22 18:31:36,837][INFO] =>  * Detected change in 'C:\\Py_prj\\Shopping_bot_final\\webapp\\webapp\\__init__.py', reloading
+[2023-01-22 18:31:37,097][INFO] =>  * Restarting with stat
+[2023-01-22 18:31:39,747][WARNING] =>  * Debugger is active!
+[2023-01-22 18:31:39,749][INFO] =>  * Debugger PIN: 993-203-713
