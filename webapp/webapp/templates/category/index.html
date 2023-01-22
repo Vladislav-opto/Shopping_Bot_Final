@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Категории</h1>
+    <div class="row">
+        <div class="col-4">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <div class="alert alert-warning" role="alert">
+                    {% for message in messages %}
+                        {{ message }}<br>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            {% endwith %}    
+            <form name="category" method="POST">
+                <div class="form-group">
+                    {{ form.authorization_code.label }}
+                    {{ form.authorization_code() }}
+                </div><br>
+                <div class="form-check">
+                    <h6><u>Выбор всех категорий сразу:</u></h6>
+                    <input class="form-check-input" type="checkbox" id="20" name="category" value="Скидываюсь на все">
+                    <label for="20">Скидываюсь на все</label><br><br>
+                    <h8>---или---</h8><br><br>
+                    <h6><u>Выбери категории по отдельности:</u></h6>
+                    {% for category in categories %}
+                        <input class="form-check-input" type="checkbox" id={{loop.index}} name="category" value="{{ category }}">
+                        <label for={{loop.index}}>{{ category }}</label><br>
+                    {% endfor %}
+                </div><br>
+                <style type="text/css"> 
+                    button[name="marker"] { 
+                        border: none;
+                        border-radius: 5px;
+                        padding: 5px 25px;
+                        background: #0475e6;
+                        color: white;
+                    }
+                </style>
+                <button type="submit" name="marker">Подтвердить</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
