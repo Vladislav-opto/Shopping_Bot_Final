@@ -20,3 +20,5 @@ USER_EMOJI = [":shit:", ":smile:", ":sunglasses:", ":eyes:"]
 9. Во второй командной строке запустите `web.py` (`python web.py`)
 
 ### Структура базы данных в проекте
+
+![Базза данных](https://raw.githubusercontent.com/Vladislav-opto/Shopping_Bot_Final/main/images/db.JPG)
