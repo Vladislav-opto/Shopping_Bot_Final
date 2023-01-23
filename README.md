@@ -21,5 +21,4 @@ USER_EMOJI = [":shit:", ":smile:", ":sunglasses:", ":eyes:"]
 
 ### Структура базы данных в проекте
 
-![Говорите и пишите по-русски правильно](https://raw.githubusercontent.com/Melevir/rozental_as_a_service/master/docs_img/rozental_book.jpg)
-![Структура БД](https://raw.githubusercontent.com/Vladislav-opto/Shopping_Bot_Final/tree/main/images/bd_structure.jpg)
+![Говорите и пишите по-русски правильно](https://raw.githubusercontent.com/Vladislav-opto/Shopping_Bot_Final/main/images/bd_structure.JPG)
