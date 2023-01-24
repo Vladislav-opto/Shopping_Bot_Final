@@ -13,6 +13,8 @@ from settings_box import settings
 from database import CRUD
 from categorization.utils import json_func
 from categorization.categorization import add_categories_to_receipt
+from database.models import Receipt
+from tg_bot.utils.keyboard import keyboard
 
 
 def greet_user(update: Update, context) -> int:
@@ -32,8 +34,8 @@ def greet_user(update: Update, context) -> int:
 
 def main_menu(update: Update, context) -> int:
     """Представляет бота пользователю."""
-    reply_keyboard = [['Список покупок 📋', 'Расходы по чеку 💰'],
-        ['У меня есть код авторизации 📢']
+    reply_keyboard = [
+        ['Расходы по чеку 💰', 'У меня есть код авторизации 📢'],
     ]
 
     update.message.reply_text(
@@ -50,7 +52,7 @@ def main_menu(update: Update, context) -> int:
 def operations_with_receipt(update: Update, context) -> int:
     """Представляет пользователю меню для работы с чеками."""
     reply_keyboard = [
-        ['Добавить чек 🆕', 'Мои чеки 📑', 'Удалить чек 🗑'],
+        ['Добавить чек 🆕', 'Мои чеки 📑'],
         ['Возврат в предыдущее меню ↩️'],
     ]
     update.message.reply_text(
@@ -139,10 +141,11 @@ def authorization_with_code(update: Update, context: CallbackContext) -> None:
         string_from_qr = read_qr_code(context.user_data.get('file_directory'))
         receipt = phone.get_ticket(string_from_qr)
         phone.refresh_token_function()
+        if CRUD.check_empty_table():
+            list_of_ids = CRUD.add_category(json_func.read('categorization/categories.ini'))
+            CRUD.add_triggers(json_func.read('categorization/categories.ini'), list_of_ids)
         processed_check = treat_receipt(receipt)
         last_receipt_id = CRUD.add_receipt(processed_check['seller'], update.message.chat.id)
-        list_of_ids = CRUD.add_category(json_func.read('categorization/categories.ini'))
-        CRUD.add_triggers(json_func.read('categorization/categories.ini'), list_of_ids)
         CRUD.add_receipt_content(add_categories_to_receipt(processed_check)['positions'], last_receipt_id)
         update.message.reply_text('Ваш чек добавлен и располагается в меню "Мои чеки"')
     else:
@@ -153,16 +156,84 @@ def my_receipts(update: Update, context) -> None:
     """
     Открывает пользователю меню с его сохраненными чеками.
     """
-    reply_keyboard = [
-        [InlineKeyboardButton('<<<', callback_data='1'), InlineKeyboardButton('>>>', callback_data='2')],
-    ]
+    context.user_data['counter'] = 0
+    receipt_list = []
+    for receipt in Receipt.query.filter(Receipt.user_id == update.message.chat.id):
+        receipt_list.append([receipt.name, receipt.date_upload, receipt.id])
+    if receipt_list:
+        context.user_data['receipt_list'] = receipt_list
+        receipt_info = context.user_data.get('receipt_list')
+        text=(f'Магазин: {receipt_info[0][0]}'
+                f'\nДата загрузки чека: {receipt_info[0][1]}'
+                f'\nКод авторизации: {receipt_info[0][2]}')
+        update.message.reply_text(
+            text,
+            reply_markup=keyboard()
+        )
 
-    update.message.reply_text('Чек №1', reply_markup=InlineKeyboardMarkup(
-        reply_keyboard, resize_keyboard=True,
-        ))
+    else:
+        update.message.reply_text('У вас нет загруженных чеков 😔')
 
 
-def web_app(update, context):
+def next_receipt(update: Update, context) -> None:
+    query = update.callback_query
+    bot = context.bot
+    receipt_info = context.user_data.get('receipt_list')
+    counter = context.user_data.get('counter')
+    counter += 1
+    try:
+        bot.edit_message_text(
+            chat_id=query.message.chat_id,
+            message_id=query.message.message_id,
+            text=(f'Магазин: {receipt_info[counter][0]}'
+                  f'\nДата загрузки чека: {receipt_info[counter][1]}'
+                  f'\nКод авторизации: {receipt_info[counter][2]}'),
+            reply_markup=keyboard()
+        )
+    except IndexError:
+        counter = 0
+        bot.edit_message_text(
+            chat_id=query.message.chat_id,
+            message_id=query.message.message_id,
+            text=(f'Магазин: {receipt_info[counter][0]}'
+                  f'\nДата загрузки чека: {receipt_info[counter][1]}'
+                  f'\nКод авторизации: {receipt_info[counter][2]}'),
+            reply_markup=keyboard()
+        )
+
+    context.user_data['counter'] = counter
+
+
+def previous_receipt(update: Update, context) -> None:
+    query = update.callback_query
+    bot = context.bot
+    receipt_info = context.user_data.get('receipt_list')
+    counter = context.user_data.get('counter')
+    counter -= 1
+    try:
+        bot.edit_message_text(
+            chat_id=query.message.chat_id,
+            message_id=query.message.message_id,
+            text=(f'Магазин: {receipt_info[counter][0]}'
+                  f'\nДата загрузки чека: {receipt_info[counter][1]}'
+                  f'\nКод авторизации: {receipt_info[counter][2]}'),
+            reply_markup=keyboard()
+        )
+    except IndexError:
+        counter = len(receipt_info) - 1
+        bot.edit_message_text(
+            chat_id=query.message.chat_id,
+            message_id=query.message.message_id,
+            text=(f'Магазин: {receipt_info[counter][0]}'
+                  f'\nДата загрузки чека: {receipt_info[counter][1]}'
+                  f'\nКод авторизации: {receipt_info[counter][2]}'),
+            reply_markup=keyboard()
+        )
+
+    context.user_data['counter'] = counter
+
+
+def web_app(update: Update, context) -> None:
     reply_keyboard = [
         [InlineKeyboardButton('Вперед к новым платежам 🚀', url='http://127.0.0.1:5000')],
     ]

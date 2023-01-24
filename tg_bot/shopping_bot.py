@@ -3,7 +3,7 @@ import logging
 from telegram.ext import (
     Updater, CommandHandler,
     ConversationHandler, Filters,
-    MessageHandler,
+    MessageHandler, CallbackQueryHandler,
 )
 
 from settings_box import settings
@@ -11,8 +11,8 @@ from settings_box import settings
 from tg_bot.handlers import (
     greet_user, main_menu, operations_with_receipt,
     add_receipt, my_receipts, check_user_photo, cancel,
-    operation_phone_number, authorization_with_code, web_app
-
+    operation_phone_number, authorization_with_code, web_app,
+    next_receipt,previous_receipt,
 )
 
 logging.basicConfig(filename='bot.log',
@@ -46,6 +46,8 @@ def tg_main() -> None:
                 MessageHandler(Filters.regex(
                     '^(Возврат в предыдущее меню ↩️)$',
                     ), main_menu),
+                CallbackQueryHandler(previous_receipt, pattern='^'+str(0)+'$'),
+                CallbackQueryHandler(next_receipt, pattern='^'+str(1)+'$')
             ],
             settings.ADD_CHECK: [
                 MessageHandler(Filters.photo, check_user_photo),

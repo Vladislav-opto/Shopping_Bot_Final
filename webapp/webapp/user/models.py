@@ -17,8 +17,18 @@ class CategoryByUser(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, ForeignKey(AuthWebApp.id), nullable=True)
     category_id = db.Column(db.Integer, nullable=True)
-    receipt_id = db.Column(db.String, nullable=True)
+    receipt_id = db.Column(db.Integer, nullable=True)
     upload = db.Column(db.DateTime, nullable=True)
 
     def __repr__(self) -> str:
         return '<ID {}>'.format(self.id)
+
+
+class AuthCodeByUser(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, ForeignKey(AuthWebApp.id), nullable=True)
+    auth_code = db.Column(db.Integer, nullable=True)
+    upload = db.Column(db.DateTime, nullable=True)
+
+    def __repr__(self) -> str:
+        return f'{self.auth_code}'
