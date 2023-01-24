@@ -1,6 +1,7 @@
 from sqlalchemy import Column, ForeignKey, Integer, String, DateTime, Float
 from database.db import Base
 from sqlalchemy.sql import func
+#from webapp.webapp.user.models import CategoryByUser
 
 
 class Receipt(Base):
@@ -48,3 +49,11 @@ class Good(Base):
         return f'Чек id={self.receipt_id}, id товара={self.id},\
               Название={self.name}, Цена={self.price},\
                 Количество={self.quantity}, Стоимость={self.sum}'
+
+
+class UserDebt(Base):
+    __tablename__ = 'userdebt'
+    id = Column(Integer, primary_key=True)
+    receipt_id = Column(Integer, ForeignKey('receipt.id'))
+    debt = Column(Float)
+    user_id = Column(Integer)

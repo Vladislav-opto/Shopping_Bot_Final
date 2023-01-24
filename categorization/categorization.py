@@ -17,4 +17,3 @@ def add_categories_to_receipt(receipt: dict) -> dict:
     for good in receipt['positions']:
         good['category_id'], good['category_name'] = define_category(good)
     return receipt
-

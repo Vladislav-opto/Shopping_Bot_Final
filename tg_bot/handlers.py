@@ -15,6 +15,8 @@ from categorization.utils import json_func
 from categorization.categorization import add_categories_to_receipt
 from database.models import Receipt
 from tg_bot.utils.keyboard import keyboard
+from calc_debt.calc_debt import (calc_number_of_participants_for_receipt, create_dict_user_categories,
+                                    create_dict_category_quantuty_users, calc_sum_of_categories, calculate_user_debt)
 
 
 def greet_user(update: Update, context) -> int:
@@ -28,6 +30,8 @@ def greet_user(update: Update, context) -> int:
             reply_keyboard, resize_keyboard=True,
         ),
     )
+    category_list = [3, 8, 9, 14]
+    calculate_user_debt(2,category_list)
 
     return settings.MAIN_MENU
 
@@ -88,9 +92,9 @@ def check_user_photo(update: Update, context: CallbackContext) -> int:
     и просит пользователя прислать номер телефона.
     """
     update.message.reply_text('Обрабатываю фото...')
-    os.makedirs('downloads', exist_ok=True)
+    os.makedirs('tg_bot/downloads', exist_ok=True)
     photo_file = context.bot.getFile(update.message.photo[-1].file_id)
-    file_name = os.path.join('downloads', f'{update.message.photo[-1].file_id}.jpg')
+    file_name = os.path.join('tg_bot/downloads', f'{update.message.photo[-1].file_id}.jpg')
     photo_file.download(file_name)
     if read_qr_code(file_name):
         update.message.reply_text(
