@@ -21,7 +21,7 @@ USER_EMOJI = [":shit:", ":smile:", ":sunglasses:", ":eyes:"]
 
 ### Структура базы данных в проекте
 
-![Базза данных](https://raw.githubusercontent.com/Vladislav-opto/Shopping_Bot_Final/main/images/db.JPG)
+![Базза данных](https://raw.githubusercontent.com/Vladislav-opto/Shopping_Bot_Final/main/images/db.jpg)
 
 ### Инструкция по применению
 
