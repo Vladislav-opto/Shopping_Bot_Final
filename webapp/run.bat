@@ -1,1 +1,0 @@
-set Flask_APP=webapp && set Flask_ENV=development && set Flask_DEBUG=1 && flask run
