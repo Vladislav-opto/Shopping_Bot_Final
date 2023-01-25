@@ -42,10 +42,6 @@ SQLALCHEMY_DATABASE_URI = `сслыка на базу данных`
 6. В первой командной строке запустите main_server.py (`python main_server.py`)
 7. Во второй командной строке после активации виртуального пространства запустите main_tg_bot.py (`python main_tg_bot.py`)
 
-### Структура базы данных в проекте
-
-![База данных](https://raw.githubusercontent.com/Vladislav-opto/Shopping_Bot_Final/main/images/db.jpg)
-
 ### Инструкция по применению
 
 1. Пользователь должен отправить команду `/start` для начала общения с ботом.
@@ -53,3 +49,7 @@ SQLALCHEMY_DATABASE_URI = `сслыка на базу данных`
 3. Далее бот показывает главное меню:
 
 (в разработке)
+
+### Структура базы данных в проекте
+
+![База данных](https://raw.githubusercontent.com/Vladislav-opto/Shopping_Bot_Final/main/images/db.jpg)
