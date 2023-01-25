@@ -52,4 +52,4 @@ SQLALCHEMY_DATABASE_URI = `сслыка на базу данных`
 
 ### Структура базы данных в проекте
 
-![База данных](https://raw.githubusercontent.com/Vladislav-opto/Shopping_Bot_Final/main/images/db.jpg)
+![База данных](https://raw.githubusercontent.com/Vladislav-opto/Shopping_Bot_Final/main/images/db1.jpg)
