@@ -12,7 +12,8 @@ from tg_bot.handlers import (
     greet_user, main_menu, operations_with_receipt,
     add_receipt, my_receipts, check_user_photo, cancel,
     operation_phone_number, authorization_with_code, web_app,
-    next_receipt,previous_receipt,
+    next_receipt,previous_receipt, tell_check_id,
+    show_debtors_for_user
 )
 
 logging.basicConfig(filename='bot.log',
@@ -32,11 +33,20 @@ def tg_main() -> None:
             ],
             settings.ACTIONS_WITH_THE_RECEIPT: [
                 MessageHandler(Filters.regex(
-                    '^(Расходы по чеку 💰)$',
+                    '^(Операции с чеками 💰)$',
                     ), operations_with_receipt),
                 MessageHandler(Filters.regex(
                     '^(У меня есть код авторизации 📢)$'
                 ), web_app),
+                MessageHandler(Filters.regex(
+                    '^(Хочу узнать кто сколько должен 🤑)$'
+                ), tell_check_id),
+            ],
+            settings.RECEIPT_DEBTORS: [
+                MessageHandler(Filters.regex(
+                    '^(Возврат в предыдущее меню ↩️)$',
+                ), main_menu),
+                MessageHandler(Filters.text, show_debtors_for_user),
             ],
             settings.MENU_RECEIPT: [
                 MessageHandler(Filters.regex(

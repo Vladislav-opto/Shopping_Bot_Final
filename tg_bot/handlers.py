@@ -14,9 +14,9 @@ from database import CRUD
 from categorization.utils import json_func
 from categorization.categorization import add_categories_to_receipt
 from database.models import Receipt
-from tg_bot.utils.keyboard import keyboard
-from calc_debt.calc_debt import (calc_number_of_participants_for_receipt, create_dict_user_categories,
-                                    create_dict_category_quantuty_users, calc_sum_of_categories, calculate_user_debt)
+from tg_bot.utils.keyboard import inline_keyboard, back_to_menu
+from calc_debt.calc_debt import calculate_user_debt
+from database.models import Good
 
 
 def greet_user(update: Update, context) -> int:
@@ -30,8 +30,6 @@ def greet_user(update: Update, context) -> int:
             reply_keyboard, resize_keyboard=True,
         ),
     )
-    category_list = [3, 8, 9, 14]
-    calculate_user_debt(2,category_list)
 
     return settings.MAIN_MENU
 
@@ -39,7 +37,9 @@ def greet_user(update: Update, context) -> int:
 def main_menu(update: Update, context) -> int:
     """Представляет бота пользователю."""
     reply_keyboard = [
-        ['Расходы по чеку 💰', 'У меня есть код авторизации 📢'],
+        ['Операции с чеками 💰'],
+        ['У меня есть код авторизации 📢'],
+        ['Хочу узнать кто сколько должен 🤑']
     ]
 
     update.message.reply_text(
@@ -71,16 +71,11 @@ def operations_with_receipt(update: Update, context) -> int:
 
 def add_receipt(update: Update, context) -> int:
     """Представляет пользователю меню для добавления чека."""
-    reply_keyboard = [
-        ['Возврат в предыдущее меню ↩️'],
-    ]
-
     answer = choice(settings.BOT_ANSWERS)
     update.message.reply_text(
         f'{answer}',
-        reply_markup=ReplyKeyboardMarkup(
-            reply_keyboard, resize_keyboard=True,
-        ))
+        reply_markup=back_to_menu(),
+        )
 
     return settings.ADD_CHECK
 
@@ -172,7 +167,7 @@ def my_receipts(update: Update, context) -> None:
                 f'\nКод авторизации: {receipt_info[0][2]}')
         update.message.reply_text(
             text,
-            reply_markup=keyboard()
+            reply_markup=inline_keyboard()
         )
 
     else:
@@ -180,6 +175,7 @@ def my_receipts(update: Update, context) -> None:
 
 
 def next_receipt(update: Update, context) -> None:
+    """Выбор следующего чека в меню 'Мои чеки'."""
     query = update.callback_query
     bot = context.bot
     receipt_info = context.user_data.get('receipt_list')
@@ -192,7 +188,7 @@ def next_receipt(update: Update, context) -> None:
             text=(f'Магазин: {receipt_info[counter][0]}'
                   f'\nДата загрузки чека: {receipt_info[counter][1]}'
                   f'\nКод авторизации: {receipt_info[counter][2]}'),
-            reply_markup=keyboard()
+            reply_markup=inline_keyboard()
         )
     except IndexError:
         counter = 0
@@ -202,13 +198,14 @@ def next_receipt(update: Update, context) -> None:
             text=(f'Магазин: {receipt_info[counter][0]}'
                   f'\nДата загрузки чека: {receipt_info[counter][1]}'
                   f'\nКод авторизации: {receipt_info[counter][2]}'),
-            reply_markup=keyboard()
+            reply_markup=inline_keyboard()
         )
 
     context.user_data['counter'] = counter
 
 
 def previous_receipt(update: Update, context) -> None:
+    """Выбор предыдущего чека в меню 'Мои чеки'."""
     query = update.callback_query
     bot = context.bot
     receipt_info = context.user_data.get('receipt_list')
@@ -221,7 +218,7 @@ def previous_receipt(update: Update, context) -> None:
             text=(f'Магазин: {receipt_info[counter][0]}'
                   f'\nДата загрузки чека: {receipt_info[counter][1]}'
                   f'\nКод авторизации: {receipt_info[counter][2]}'),
-            reply_markup=keyboard()
+            reply_markup=inline_keyboard()
         )
     except IndexError:
         counter = len(receipt_info) - 1
@@ -231,20 +228,48 @@ def previous_receipt(update: Update, context) -> None:
             text=(f'Магазин: {receipt_info[counter][0]}'
                   f'\nДата загрузки чека: {receipt_info[counter][1]}'
                   f'\nКод авторизации: {receipt_info[counter][2]}'),
-            reply_markup=keyboard()
+            reply_markup=inline_keyboard()
         )
 
     context.user_data['counter'] = counter
 
 
 def web_app(update: Update, context) -> None:
+    """Открывает веб-приложение, при нажатии на кнопку."""
     reply_keyboard = [
         [InlineKeyboardButton('Вперед к новым платежам 🚀', url='http://127.0.0.1:5000')],
     ]
 
-    update.message.reply_text('P. Diddy за вечер тратил до 3 млн. $, а ты?', reply_markup=InlineKeyboardMarkup(
+    update.message.reply_text('Узнай сколько потратил ты!', reply_markup=InlineKeyboardMarkup(
         reply_keyboard, resize_keyboard=True,
     ))
+
+
+def tell_check_id(update: Update, context) -> int:
+    """Запрашивает у пользователя номер чека."""
+    update.message.reply_text(
+        'Введите код авторизации интересующего вас чека.', reply_markup=back_to_menu())
+
+    return settings.RECEIPT_DEBTORS
+
+
+def show_debtors_for_user(update: Update, context) -> None:
+    """Выводит информацию о должниках по чеку."""
+    receipt_id = int(update.message.text)
+    category_set = {_.category_id for _ in Good.query.filter(Good.receipt_id == receipt_id).all()}
+    category_list = list(category_set)
+    dict_of_debtors = calculate_user_debt(receipt_id, category_list)
+    message_for_user = ''
+    if dict_of_debtors:
+        message_for_user += f'Информация по чеку: {receipt_id}'
+        message_for_user += f'\n---'
+        for person, debt in dict_of_debtors.items():
+            message_for_user += f'\n{person}: {debt} руб.'
+        message_for_user += f'\n---'
+        message_for_user += f'\nРасчеты верны, если все участники чека авторизировались.'
+    else:
+        message_for_user += f'Никто из участников вечеринки не прошел авторизацию 😔'
+    update.message.reply_text(message_for_user, reply_markup=back_to_menu())
 
 
 def cancel(update: Update, context) -> int:
