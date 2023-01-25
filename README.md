@@ -35,7 +35,7 @@ HEADERS = {
     'User-Agent': 'billchecker/2.9.0 (iPhone; iOS 13.6; Scale/2.00)',
 }
 NALOG_URL = 'irkkt-mobile.nalog.ru:8888/v2'
-SECRET_KEY = 'ключ для создания веб-формы'
+SECRET_KEY = 'переменная конфигурации Flask'
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 SQLALCHEMY_DATABASE_URI = `сслыка на базу данных`
 ```
