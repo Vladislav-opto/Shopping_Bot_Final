@@ -35,7 +35,7 @@ def create_dict_category_quantuty_users(receipt_id: int, category_list: list) ->
     quantity_entry = calc_number_of_participants_for_receipt(receipt_id)
     dict_category_quantity_users = {}
     try:
-        filtered_by_receipt_id = db_session.query(CategoryByUser).filter(CategoryByUser.receipt_id == receipt_id).all() #список id записей по данному чеку
+        filtered_by_receipt_id = db_session.query(CategoryByUser).filter(CategoryByUser.receipt_id == receipt_id).all()
         for category in category_list:
             counter = 0
             quantity_entry_in_func = quantity_entry
@@ -57,7 +57,7 @@ def create_dict_user_categories(receipt_id: int, category_list: list) -> dict[li
     list_of_user_ids = []
     temp_category_list = []
     try:
-        filtered_by_receipt_id = db_session.query(CategoryByUser).filter(CategoryByUser.receipt_id == receipt_id).all() #список id записей по данному чеку
+        filtered_by_receipt_id = db_session.query(CategoryByUser).filter(CategoryByUser.receipt_id == receipt_id).all()
         for line in filtered_by_receipt_id:
             if list_of_user_ids:
                 if line.user_id != list_of_user_ids[-1]:
