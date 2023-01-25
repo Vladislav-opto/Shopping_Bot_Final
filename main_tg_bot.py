@@ -1,5 +1,4 @@
 from database.db import Base, engine
-from webapp.webapp import create_app
 from tg_bot.shopping_bot import tg_main
 
 
