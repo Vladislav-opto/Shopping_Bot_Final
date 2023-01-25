@@ -25,6 +25,7 @@ MENU_RECEIPT = 2
 ADD_CHECK = 3
 PHONE_NUMBER = 4
 CODE = 5
+RECEIPT_DEBTORS = 6
 HEADERS = {
     'Host': 'irkkt-mobile.nalog.ru:8888',
     'Accept': '*/*',
