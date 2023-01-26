@@ -1,5 +1,5 @@
 from database.db import db_session
-from database.models import Receipt, Good, Category, CategoryTriggers
+from database.models import Receipt, Good, Category, CategoryTrigger
 from datetime import datetime
 from typing import Any
 
@@ -14,8 +14,7 @@ def add_receipt(receipt_name: str, userid: int) -> int:
 
 def get_receipt(receipt_id: int) -> str | None:
     if db_session.query(
-        Receipt.query.filter(Receipt.id == receipt_id).exists()
-                                                              ).scalar():
+        Receipt.query.filter(Receipt.id == receipt_id).exists()).scalar():
         return Receipt.query.get(receipt_id)
     else:
         return None
@@ -30,14 +29,13 @@ def add_receipt_content(receipt_content: list, receipt_id: int) -> None:
 
 def get_receipt_content(receipt_id: int) -> str | None:
     if db_session.query(
-        Good.query.filter(Good.id == receipt_id).exists()
-                                                        ).scalar():
+        Good.query.filter(Good.id == receipt_id).exists()).scalar():
         return Good.query.get(receipt_id)
     else:
         return None
 
 
-def add_category(categories: dict) -> None:
+def add_category(categories: dict) -> list:
     list_categories = []
     for name_category in categories:
         temp_dict = {}
@@ -56,14 +54,14 @@ def add_triggers(categories: dict[str,list], list_of_ids: list[int]) -> None:
             temp_dict['name'] = trigger
             temp_dict['category_id'] = list_of_ids[index]
             list_to_db.append(temp_dict)
-    db_session.bulk_insert_mappings(CategoryTriggers, list_to_db)
+    db_session.bulk_insert_mappings(CategoryTrigger, list_to_db)
     db_session.commit()
 
 
 def get_category(trigger: tuple[str]) -> list[str]:
-    query = db_session.query(Category, CategoryTriggers).join(
-        Category, CategoryTriggers.category_id == Category.id
-    ).filter(CategoryTriggers.name == trigger)
+    query = db_session.query(Category, CategoryTrigger).join(
+        Category, CategoryTrigger.category_id == Category.id
+    ).filter(CategoryTrigger.name == trigger)
     for category, _ in query:
         break
     return [category.id, category.name]
@@ -77,4 +75,4 @@ def check_empty_table() -> bool:
 
 
 def get_triggers_name() -> Any:
-    return db_session.query(CategoryTriggers.name)
+    return db_session.query(CategoryTrigger.name)

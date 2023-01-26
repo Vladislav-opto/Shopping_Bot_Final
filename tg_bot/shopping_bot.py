@@ -1,13 +1,10 @@
 import logging
-
 from telegram.ext import (
     Updater, CommandHandler,
     ConversationHandler, Filters,
     MessageHandler, CallbackQueryHandler,
 )
-
-from settings_box import settings
-
+from settings_box import settings, constants
 from tg_bot.handlers import (
     greet_user, main_menu, operations_with_receipt,
     add_receipt, my_receipts, check_user_photo, cancel,
@@ -24,14 +21,13 @@ logging.basicConfig(filename='bot.log',
 def tg_main() -> None:
     """Run the bot."""
     mybot = Updater(settings.API_KEY, use_context=True)
-
     conv_handler = ConversationHandler(
         entry_points=[CommandHandler('start', greet_user)],
         states={
-            settings.MAIN_MENU: [
+            constants.MAIN_MENU: [
                 MessageHandler(Filters.regex('^(Привет 👋)$'), main_menu),
             ],
-            settings.ACTIONS_WITH_THE_RECEIPT: [
+            constants.ACTIONS_WITH_THE_RECEIPT: [
                 MessageHandler(Filters.regex(
                     '^(Операции с чеками 💰)$',
                     ), operations_with_receipt),
@@ -42,13 +38,13 @@ def tg_main() -> None:
                     '^(Хочу узнать кто сколько должен 🤑)$'
                 ), tell_check_id),
             ],
-            settings.RECEIPT_DEBTORS: [
+            constants.RECEIPT_DEBTORS: [
                 MessageHandler(Filters.regex(
                     '^(Возврат в предыдущее меню ↩️)$',
                 ), main_menu),
                 MessageHandler(Filters.text, show_debtors_for_user),
             ],
-            settings.MENU_RECEIPT: [
+            constants.MENU_RECEIPT: [
                 MessageHandler(Filters.regex(
                     '^(Добавить чек 🆕)$',
                     ), add_receipt),
@@ -59,20 +55,20 @@ def tg_main() -> None:
                 CallbackQueryHandler(previous_receipt, pattern='^'+str(0)+'$'),
                 CallbackQueryHandler(next_receipt, pattern='^'+str(1)+'$')
             ],
-            settings.ADD_CHECK: [
+            constants.ADD_CHECK: [
                 MessageHandler(Filters.photo, check_user_photo),
                 MessageHandler(Filters.regex(
                     '^(Возврат в предыдущее меню ↩️)$',
                     ), operations_with_receipt),
             ],
-            settings.PHONE_NUMBER: [
+            constants.PHONE_NUMBER: [
                 MessageHandler(Filters.regex(
                     '^(Возврат в предыдущее меню ↩️)$',
                     ), operations_with_receipt),
                 MessageHandler(Filters.text,
                     operation_phone_number),
             ],
-            settings.CODE: [
+            constants.CODE: [
                 MessageHandler(Filters.regex(
                     '^(Возврат в предыдущее меню ↩️)$',
                     ), operations_with_receipt),

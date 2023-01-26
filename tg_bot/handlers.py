@@ -5,11 +5,10 @@ from telegram import (
     InlineKeyboardMarkup, InlineKeyboardButton,
 )
 from telegram.ext import ConversationHandler, CallbackContext
-
 from processing_qr_code.API_FNS.nalog_ru import NalogRuPython
 from qr_code_scan_opencv.QR_to_string_openCV import read_qr_code
 from processing_qr_code.receipt import treat_receipt
-from settings_box import settings
+from settings_box import constants
 from database import CRUD
 from categorization.utils import json_func
 from categorization.categorization import add_categories_to_receipt
@@ -31,7 +30,7 @@ def greet_user(update: Update, context) -> int:
         ),
     )
 
-    return settings.MAIN_MENU
+    return constants.MAIN_MENU
 
 
 def main_menu(update: Update, context) -> int:
@@ -49,7 +48,7 @@ def main_menu(update: Update, context) -> int:
         ),
     )
 
-    return settings.ACTIONS_WITH_THE_RECEIPT
+    return constants.ACTIONS_WITH_THE_RECEIPT
 
 
 def operations_with_receipt(update: Update, context) -> int:
@@ -65,18 +64,18 @@ def operations_with_receipt(update: Update, context) -> int:
         ),
     )
 
-    return settings.MENU_RECEIPT
+    return constants.MENU_RECEIPT
 
 
 def add_receipt(update: Update, context) -> int:
     """Представляет пользователю меню для добавления чека."""
-    answer = choice(settings.BOT_ANSWERS)
+    answer = choice(constants.BOT_ANSWERS)
     update.message.reply_text(
         f'{answer}',
         reply_markup=back_to_menu(),
         )
 
-    return settings.ADD_CHECK
+    return constants.ADD_CHECK
 
 
 def check_user_photo(update: Update, context: CallbackContext) -> int:
@@ -100,7 +99,7 @@ def check_user_photo(update: Update, context: CallbackContext) -> int:
         context.user_data['file_directory'] = new_filename
         update.message.reply_text('Пожалуйста введите номер\nв формате +79ХХХХХХХХХ.')
 
-        return settings.PHONE_NUMBER
+        return constants.PHONE_NUMBER
 
     else:
         os.remove(file_name)
@@ -116,7 +115,7 @@ def operation_phone_number(update: Update, context: CallbackContext) -> int:
     if len(update.message.text) != 12 or update.message.text[:2] != '+7' or not update.message.text[1:].isdigit():
         update.message.reply_text('Введите номер телефона в формате +79ХХХХХХХХХ.')
 
-        return settings.PHONE_NUMBER
+        return constants.PHONE_NUMBER
 
     phone = update.message.text
     context.user_data['phone'] = phone
@@ -125,7 +124,7 @@ def operation_phone_number(update: Update, context: CallbackContext) -> int:
     phone.sends_sms_to_the_user()
     update.message.reply_text('Пожалуйста введите код из SMS.')
     
-    return settings.CODE
+    return constants.CODE
 
 
 def authorization_with_code(update: Update, context: CallbackContext) -> None:
@@ -140,8 +139,8 @@ def authorization_with_code(update: Update, context: CallbackContext) -> None:
         receipt = phone.get_ticket(string_from_qr)
         phone.refresh_token_function()
         if CRUD.check_empty_table():
-            list_of_ids = CRUD.add_category(json_func.read('categorization/categories.ini'))
-            CRUD.add_triggers(json_func.read('categorization/categories.ini'), list_of_ids)
+            list_of_ids = CRUD.add_category(json_func.read('categorization/categories.json'))
+            CRUD.add_triggers(json_func.read('categorization/categories.json'), list_of_ids)
         processed_check = treat_receipt(receipt)
         last_receipt_id = CRUD.add_receipt(processed_check['seller'], update.message.chat.id)
         CRUD.add_receipt_content(add_categories_to_receipt(processed_check)['positions'], last_receipt_id)
@@ -249,7 +248,7 @@ def tell_check_id(update: Update, context) -> int:
     update.message.reply_text(
         'Введите код авторизации интересующего вас чека.', reply_markup=back_to_menu())
 
-    return settings.RECEIPT_DEBTORS
+    return constants.RECEIPT_DEBTORS
 
 
 def show_debtors_for_user(update: Update, context) -> None:

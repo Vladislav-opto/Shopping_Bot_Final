@@ -1,7 +1,6 @@
 from sqlalchemy import Column, ForeignKey, Integer, String, DateTime, Float
 from database.db import Base
 from sqlalchemy.sql import func
-#from webapp.webapp.user.models import CategoryByUser
 
 
 class Receipt(Base):
@@ -24,14 +23,14 @@ class Category(Base):
         return self.name
 
 
-class CategoryTriggers(Base):
-    __tablename__ = 'category_triggers'
+class CategoryTrigger(Base):
+    __tablename__ = 'category_trigger'
     id = Column(Integer, primary_key=True)
     category_id = Column(Integer, ForeignKey('category.id'))
     name = Column(String)
 
     def __repr__(self):
-        return f'CategoryTriggers id: {self.id}, name: {self.name}, category_id: {self.category_id}'
+        return f'CategoryTrigger id: {self.id}, name: {self.name}, category_id: {self.category_id}'
 
 
 class Good(Base):
@@ -46,6 +45,6 @@ class Good(Base):
     category_id = Column(Integer, ForeignKey('category.id'))
 
     def __repr__(self):
-        return f'Чек id={self.receipt_id}, id товара={self.id},\
-              Название={self.name}, Цена={self.price},\
-                Количество={self.quantity}, Стоимость={self.sum}'
+        return ((f'Чек id={self.receipt_id}, id товара={self.id},'
+              f'Название={self.name}, Цена={self.price},'
+                f'Количество={self.quantity}, Стоимость={self.sum}'))

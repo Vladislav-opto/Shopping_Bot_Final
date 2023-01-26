@@ -2,7 +2,8 @@
 This module take from https://github.com/valiotti/get-receipts.git
 """
 import requests
-from settings_box.settings import CLIENT_SECRET, HEADERS, NALOG_URL
+from settings_box.settings import CLIENT_SECRET, NALOG_URL
+from settings_box.constants import HEADERS
 
 class NalogRuPython:
 
