@@ -43,8 +43,7 @@ def main_menu(update: Update, context) -> int:
     ]
 
     update.message.reply_text(
-        'Я бот Толян 🤖.\nЯ умею составлять списки покупок 🛒'
-        '\nи распределять чеки.🙎‍♂️🧾👫',
+        'Я бот Толян 🤖.\nЯ помогу тебе распределить чеки.🙎‍♂️🧾👫',
         reply_markup=ReplyKeyboardMarkup(
             reply_keyboard, resize_keyboard=True,
         ),
