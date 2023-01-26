@@ -18,7 +18,7 @@ SECRET_KEY = 'переменная конфигурации Flask'
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 SQLALCHEMY_DATABASE_URI = `ссылка на базу данных`
 ```
-6. В первой командной строке запустите main_server.py (`python main_server.py`)
+6. В первой командной строке после активации виртуального пространства запустите main_server.py (`python main_server.py`)
 7. Во второй командной строке после активации виртуального пространства запустите main_tg_bot.py (`python main_tg_bot.py`)
 
 ### Инструкция по применению
